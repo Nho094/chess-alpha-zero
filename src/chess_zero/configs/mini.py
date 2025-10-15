@@ -67,3 +67,25 @@ class ModelConfig:
     value_fc_size = 256
     distributed = False
     input_depth = 18
+
+
+
+class Config:
+    def __init__(self):
+        # nơi chứa các file PGN để huấn luyện Supervised Learning
+        self.pgn_dir = "data/pgn"
+        # nơi lưu model huấn luyện
+        self.model_dir = "data/model"
+        # nơi lưu dữ liệu self-play
+        self.play_data_dir = "data/play_data"
+
+        # gắn các cấu hình con
+        self.play = PlayConfig()
+        self.trainer = TrainerConfig()
+        self.model = ModelConfig()
+        self.evaluate = EvaluateConfig()
+        self.play_data = PlayDataConfig()
+
+        # kích thước board (8x8 cho cờ vua)
+        self.board_size = 8
+        self.n_labels = 4672  # số lượng khả năng nước đi (chuẩn của chess-alpha-zero mini)

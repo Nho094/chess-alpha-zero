@@ -21,8 +21,32 @@ logger = getLogger(__name__)
 TAG_REGEX = re.compile(r"^\[([A-Za-z0-9_]+)\s+\"(.*)\"\]\s*$")
 
 
+# def start(config: Config):
+#     return SupervisedLearningWorker(config).start()
+
+import glob
+from chess_zero.config import Config
+# from chess_zero.worker.sl import SupervisedLearningWorker
+
 def start(config: Config):
-    return SupervisedLearningWorker(config).start()
+    worker = SupervisedLearningWorker(config)
+    pgn_files = glob.glob("data/pgn/*.pgn")
+
+    if not pgn_files:
+        print("❌ Không tìm thấy file PGN nào trong data/pgn/")
+        return
+
+    print(f"✅ Found {len(pgn_files)} PGN files.")
+    for pgn in pgn_files:
+        print(f"📖 Đang đọc {pgn} ...")
+        try:
+            worker.load_pgn(pgn)
+        except Exception as e:
+            print(f"⚠️ Lỗi khi đọc {pgn}: {e}")
+
+    print("🚀 Bắt đầu huấn luyện mô hình SL ...")
+    worker.start()
+
 
 
 class SupervisedLearningWorker:
@@ -67,17 +91,27 @@ class SupervisedLearningWorker:
         if len(self.buffer) > 0:
             self.flush_buffer()
 
+    # def get_games_from_all_files(self):
+    #     """
+    #     Loads game data from pgn files
+    #     :return list(chess.pgn.Game): the games
+    #     """
+    #     files = find_pgn_files(self.config.resource.play_data_dir)
+    #     print(files)
+    #     games = []
+    #     for filename in files:
+    #         games.extend(get_games_from_file(filename))
+    #     print("done reading")
+    #     return games
+
     def get_games_from_all_files(self):
-        """
-        Loads game data from pgn files
-        :return list(chess.pgn.Game): the games
-        """
-        files = find_pgn_files(self.config.resource.play_data_dir)
-        print(files)
+        files = glob.glob("data/pgn/*.pgn")  # ✅ Thay vì self.config.resource.play_data_dir
+        print(f"Found {len(files)} PGN files for supervised learning.")
         games = []
         for filename in files:
+            print(f"Reading {filename} ...")
             games.extend(get_games_from_file(filename))
-        print("done reading")
+        print("✅ Done reading all PGN files.")
         return games
 
     def save_data(self, data):
