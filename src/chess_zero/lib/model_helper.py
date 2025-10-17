@@ -12,7 +12,9 @@ def load_best_model_weight(model):
     :param chess_zero.agent.model.ChessModel model:
     :return:
     """
-    return model.load(model.config.resource.model_best_config_path, model.config.resource.model_best_weight_path)
+    # return model.load(model.config.resource.model_best_config_path, model.config.resource.model_best_weight_path)
+    return model.load(model.config.resource.model_best_config_path, model.config.resource.model_best_weight_path.replace('.h5', '.weights.h5'))
+
 
 
 def save_as_best_model(model):
