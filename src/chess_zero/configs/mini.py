@@ -44,19 +44,38 @@ class PlayConfig:
         self.max_game_length = 1000
 
 
+# class TrainerConfig:
+#     def __init__(self):
+#         self.min_data_size_to_learn = 0
+#         self.cleaning_processes = 5 # RAM explosion...
+#         self.vram_frac = 1.0
+#         self.batch_size = 384 # tune this to your gpu memory
+#         self.epoch_to_checkpoint = 1
+#         self.dataset_size = 100000
+#         self.start_total_steps = 0
+#         self.save_model_steps = 25
+#         self.load_data_steps = 100
+#         self.loss_weights = [1.25, 1.0] # [policy, value] prevent value overfit in SL
+#         self.learning_rate = self.lr
 class TrainerConfig:
     def __init__(self):
         self.min_data_size_to_learn = 0
-        self.cleaning_processes = 5 # RAM explosion...
+        self.cleaning_processes = 5  # RAM explosion...
         self.vram_frac = 1.0
-        self.batch_size = 384 # tune this to your gpu memory
+        self.batch_size = 384  # tune this to your gpu memory
         self.epoch_to_checkpoint = 1
         self.dataset_size = 100000
         self.start_total_steps = 0
         self.save_model_steps = 25
         self.load_data_steps = 100
-        self.loss_weights = [1.25, 1.0] # [policy, value] prevent value overfit in SL
+        self.loss_weights = [1.25, 1.0]  # [policy, value] prevent value overfit in SL
 
+        # Thêm dòng này để định nghĩa tốc độ học
+        self.lr = 0.001  # hoặc 0.0005, tùy bạn muốn nhanh/chậm thế nào
+
+        # Và sau đó đồng bộ
+        self.learning_rate = self.lr
+    
 
 class ModelConfig:
     cnn_filter_num = 256
@@ -89,3 +108,4 @@ class Config:
         # kích thước board (8x8 cho cờ vua)
         self.board_size = 8
         self.n_labels = 4672  # số lượng khả năng nước đi (chuẩn của chess-alpha-zero mini)
+        

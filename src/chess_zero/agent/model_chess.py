@@ -161,7 +161,9 @@ class ChessModel:
         if self.model is None:
             self.build()  # build Keras model nếu chưa có
         import tensorflow as tf
-        opt = tf.keras.optimizers.Adam(learning_rate=self.config.trainer.lr)
+        # opt = tf.keras.optimizers.Adam(learning_rate=self.config.trainer.lr)
+        opt = tf.keras.optimizers.Adam(learning_rate=self.config.trainer.learning_rate)
+
         losses = {
             'policy_out': 'categorical_crossentropy',
             'value_out': 'mean_squared_error'

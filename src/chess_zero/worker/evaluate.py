@@ -111,33 +111,57 @@ class EvaluateWorker:
         new_dir = os.path.join(rc.next_generation_model_dir, "copies", model_dir.name)
         os.rename(model_dir, new_dir)
 
+    # def load_current_model(self):
+    #     """
+    #     Loads the best model from the standard directory.
+    #     :return ChessModel: the model
+    #     """
+    #     model = ChessModel(self.config)
+    #     load_best_model_weight(model)
+    #     return model
     def load_current_model(self):
-        """
-        Loads the best model from the standard directory.
-        :return ChessModel: the model
-        """
         model = ChessModel(self.config)
-        load_best_model_weight(model)
+        ok = load_best_model_weight(model)
+        if not ok or model.model is None:
+            model.build()
+            model.compile_model()
         return model
 
+    # def load_next_generation_model(self):
+    #     """
+    #     Loads the next generation model from the standard directory
+    #     :return (ChessModel, file): the model and the directory that it was in
+    #     """
+    #     rc = self.config.resource
+    #     while True:
+    #         dirs = get_next_generation_model_dirs(self.config.resource)
+    #         if dirs:
+    #             break
+    #         logger.info("There is no next generation model to evaluate")
+    #         sleep(60)
+    #     model_dir = dirs[-1] if self.config.eval.evaluate_latest_first else dirs[0]
+    #     config_path = os.path.join(model_dir, rc.next_generation_model_config_filename)
+    #     weight_path = os.path.join(model_dir, rc.next_generation_model_weight_filename)
+    #     model = ChessModel(self.config)
+    #     model.load(config_path, weight_path)
+    #     return model, model_dir
     def load_next_generation_model(self):
-        """
-        Loads the next generation model from the standard directory
-        :return (ChessModel, file): the model and the directory that it was in
-        """
-        rc = self.config.resource
-        while True:
-            dirs = get_next_generation_model_dirs(self.config.resource)
-            if dirs:
-                break
-            logger.info("There is no next generation model to evaluate")
-            sleep(60)
-        model_dir = dirs[-1] if self.config.eval.evaluate_latest_first else dirs[0]
-        config_path = os.path.join(model_dir, rc.next_generation_model_config_filename)
-        weight_path = os.path.join(model_dir, rc.next_generation_model_weight_filename)
-        model = ChessModel(self.config)
-        model.load(config_path, weight_path)
-        return model, model_dir
+            rc = self.config.resource
+            while True:
+                dirs = get_next_generation_model_dirs(self.config.resource)
+                if dirs:
+                    break
+                logger.info("There is no next generation model to evaluate")
+                sleep(60)
+            model_dir = dirs[-1] if self.config.eval.evaluate_latest_first else dirs[0]
+            config_path = os.path.join(model_dir, rc.next_generation_model_config_filename)
+            weight_path = os.path.join(model_dir, rc.next_generation_model_weight_filename)
+            model = ChessModel(self.config)
+            ok = model.load(config_path, weight_path)
+            if not ok or model.model is None:
+                model.build()
+                model.compile_model()
+            return model, model_dir
 
 
 def play_game(config, cur, ng, current_white: bool) -> (float, ChessEnv, bool):

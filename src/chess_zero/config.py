@@ -171,6 +171,8 @@ class Config:
         self.labels = Config.labels
         self.n_labels = Config.n_labels
         self.flipped_labels = Config.flipped_labels
+        self.lr = getattr(self.trainer, "lr", 0.001)
+
 
     @staticmethod
     def flip_policy(pol):
