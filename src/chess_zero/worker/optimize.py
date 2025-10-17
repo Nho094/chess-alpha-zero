@@ -43,10 +43,17 @@ class OptimizeWorker:
                     who actually won the game after that state)
         :ivar ProcessPoolExecutor executor: executor for running all of the training processes
     """
-    def __init__(self, config: Config):
+    # def __init__(self, config: Config):
+    #     self.config = config
+    #     self.model = None  # type: ChessModel
+    #     self.dataset = deque(),deque(),deque()
+    #     self.executor = ProcessPoolExecutor(max_workers=config.trainer.cleaning_processes)
+
+    def __init__(self, config):
         self.config = config
-        self.model = None  # type: ChessModel
-        self.dataset = deque(),deque(),deque()
+        self.model = ChessModel(config)
+        self.model.build()
+        self.dataset = deque(), deque(), deque()
         self.executor = ProcessPoolExecutor(max_workers=config.trainer.cleaning_processes)
 
     def start(self):
@@ -84,7 +91,8 @@ class OptimizeWorker:
         """
         tc = self.config.trainer
         state_ary, policy_ary, value_ary = self.collect_all_loaded_data()
-        tensorboard_cb = TensorBoard(log_dir="./logs", batch_size=tc.batch_size, histogram_freq=1)
+        # tensorboard_cb = TensorBoard(log_dir="./logs", batch_size=tc.batch_size, histogram_freq=1)
+        tensorboard_cb = TensorBoard(log_dir="./logs", histogram_freq=1)
         self.model.model.fit(state_ary, [policy_ary, value_ary],
                              batch_size=tc.batch_size,
                              epochs=epochs,
@@ -147,10 +155,29 @@ class OptimizeWorker:
         value_ary1 = np.asarray(value_ary, dtype=np.float32)
         return state_ary1, policy_ary1, value_ary1
 
+    # def load_model(self):
+    #     """
+    #     Loads the next generation model from the appropriate directory. If not found, loads
+    #     the best known model.
+    #     """
+    #     model = ChessModel(self.config)
+    #     rc = self.config.resource
+
+    #     dirs = get_next_generation_model_dirs(rc)
+    #     if not dirs:
+    #         logger.debug("loading best model")
+    #         if not load_best_model_weight(model):
+    #             raise RuntimeError("Best model can not loaded!")
+    #     else:
+    #         latest_dir = dirs[-1]
+    #         logger.debug("loading latest model")
+    #         config_path = os.path.join(latest_dir, rc.next_generation_model_config_filename)
+    #         weight_path = os.path.join(latest_dir, rc.next_generation_model_weight_filename)
+    #         model.load(config_path, weight_path)
+    #     return model
     def load_model(self):
         """
-        Loads the next generation model from the appropriate directory. If not found, loads
-        the best known model.
+        Loads the next generation model from the appropriate directory.
         """
         model = ChessModel(self.config)
         rc = self.config.resource
@@ -159,13 +186,17 @@ class OptimizeWorker:
         if not dirs:
             logger.debug("loading best model")
             if not load_best_model_weight(model):
-                raise RuntimeError("Best model can not loaded!")
+                logger.warning("Best model cannot be loaded! Building a fresh one instead.")
+                model.build()  # 🔧 build model nếu không có file
         else:
             latest_dir = dirs[-1]
-            logger.debug("loading latest model")
+            logger.debug(f"loading latest model from {latest_dir}")
             config_path = os.path.join(latest_dir, rc.next_generation_model_config_filename)
             weight_path = os.path.join(latest_dir, rc.next_generation_model_weight_filename)
             model.load(config_path, weight_path)
+            if model.model is None:  # 🔧 nếu load thất bại thì vẫn build
+                model.build()
+
         return model
 
 

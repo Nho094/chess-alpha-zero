@@ -156,17 +156,39 @@ class ChessModel:
         else:
             logger.debug(f"model files does not exist at {config_path} and {weight_path}")
             return False
+   
+    def compile_model(self):
+        if self.model is None:
+            self.build()  # build Keras model nếu chưa có
+        import tensorflow as tf
+        opt = tf.keras.optimizers.Adam(learning_rate=self.config.trainer.lr)
+        losses = {
+            'policy_out': 'categorical_crossentropy',
+            'value_out': 'mean_squared_error'
+        }
+        self.model.compile(optimizer=opt, loss=losses, loss_weights=self.config.trainer.loss_weights)
 
+
+
+
+    # def save(self, config_path, weight_path):
+    #     """
+
+    #     :param str config_path: path to save the entire configuration to
+    #     :param str weight_path: path to save the model weights to
+    #     """
+    #     logger.debug(f"save model to {config_path}")
+    #     with open(config_path, "wt") as f:
+    #         json.dump(self.model.get_config(), f)
+    #         self.model.save_weights(weight_path)
+    #     self.digest = self.fetch_digest(weight_path)
+    #     logger.debug(f"saved model digest {self.digest}")
     def save(self, config_path, weight_path):
-        """
-
-        :param str config_path: path to save the entire configuration to
-        :param str weight_path: path to save the model weights to
-        """
         logger.debug(f"save model to {config_path}")
+        weight_path = weight_path.replace(".h5", ".weights.h5")  # sửa tên file
         with open(config_path, "wt") as f:
             json.dump(self.model.get_config(), f)
-            self.model.save_weights(weight_path)
+        self.model.save_weights(weight_path)
         self.digest = self.fetch_digest(weight_path)
         logger.debug(f"saved model digest {self.digest}")
 
