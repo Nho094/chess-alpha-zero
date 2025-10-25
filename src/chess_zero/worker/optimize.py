@@ -60,6 +60,10 @@ class OptimizeWorker:
         """
         Does the actual training of the model, running it on game data. Endless.
         """
+        # nếu model chưa được build, build ngay//change
+        if self.model.model is None:
+            self.model.build()
+
         self.compile_model()
         self.filenames = deque(get_game_data_filenames(self.config.resource))
         shuffle(self.filenames)
@@ -84,7 +88,8 @@ class OptimizeWorker:
         """
         tc = self.config.trainer
         state_ary, policy_ary, value_ary = self.collect_all_loaded_data()
-        tensorboard_cb = TensorBoard(log_dir="./logs", batch_size=tc.batch_size, histogram_freq=1)
+        # tensorboard_cb = TensorBoard(log_dir="./logs", batch_size=tc.batch_size, histogram_freq=1)
+        tensorboard_cb = TensorBoard(log_dir="./logs", histogram_freq=1)
         self.model.model.fit(state_ary, [policy_ary, value_ary],
                              batch_size=tc.batch_size,
                              epochs=epochs,

@@ -162,6 +162,9 @@ class ChessModel:
         :param str config_path: path to save the entire configuration to
         :param str weight_path: path to save the model weights to
         """
+        #changed
+        if not weight_path.endswith(".weights.h5"):
+            weight_path = weight_path.replace(".h5", ".weights.h5")
         logger.debug(f"save model to {config_path}")
         with open(config_path, "wt") as f:
             json.dump(self.model.get_config(), f)
