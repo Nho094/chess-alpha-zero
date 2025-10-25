@@ -63,7 +63,20 @@ class ChessModelAPI:
                     data.append(pipe.recv())
                     result_pipes.append(pipe)
 
+            if not data:
+                continue
+
             data = np.asarray(data, dtype=np.float32)
+            #changed
+            # 👇 Thêm đoạn này để đảm bảo model luôn được load
+            if self.agent_model.model is None:
+                from chess_zero.lib.model_helper import load_best_model_weight
+                print("[INFO] Model not loaded — loading best model weights...")
+                load_best_model_weight(self.agent_model)
+                if self.agent_model.model is None:
+                    raise RuntimeError("Failed to load model weights!")
+                print("[INFO] Model loaded successfully!")
+
             policy_ary, value_ary = self.agent_model.model.predict_on_batch(data)
             for pipe, p, v in zip(result_pipes, policy_ary, value_ary):
                 pipe.send((p, float(v)))
