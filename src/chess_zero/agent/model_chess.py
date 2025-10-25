@@ -8,13 +8,17 @@ import json
 import os
 from logging import getLogger
 
-from keras.engine.topology import Input
-from keras.engine.training import Model
-from keras.layers.convolutional import Conv2D
-from keras.layers.core import Activation, Dense, Flatten
-from keras.layers.merge import Add
-from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l2
+# from keras.engine.topology import Input
+# from keras.engine.training import Model
+# from keras.layers.convolutional import Conv2D
+# from keras.layers.core import Activation, Dense, Flatten
+# from keras.layers.merge import Add
+# from keras.layers.normalization import BatchNormalization
+# from keras.regularizers import l2
+
+from tensorflow.keras.layers import Input, Conv2D, Activation, Dense, Flatten, Add, BatchNormalization
+from tensorflow.keras.models import Model
+from tensorflow.keras.regularizers import l2
 
 from chess_zero.agent.api_chess import ChessModelAPI
 from chess_zero.config import Config
@@ -144,7 +148,7 @@ class ChessModel:
             with open(config_path, "rt") as f:
                 self.model = Model.from_config(json.load(f))
             self.model.load_weights(weight_path)
-            self.model._make_predict_function()
+            # self.model._make_predict_function()
             self.digest = self.fetch_digest(weight_path)
             logger.debug(f"loaded model digest = {self.digest}")
             return True
