@@ -8,13 +8,17 @@ import json
 import os
 from logging import getLogger
 
-from keras.engine.topology import Input
-from keras.engine.training import Model
-from keras.layers.convolutional import Conv2D
-from keras.layers.core import Activation, Dense, Flatten
-from keras.layers.merge import Add
-from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l2
+# from keras.engine.topology import Input
+# from keras.engine.training import Model
+# from keras.layers.convolutional import Conv2D
+# from keras.layers.core import Activation, Dense, Flatten
+# from keras.layers.merge import Add
+# from keras.layers.normalization import BatchNormalization
+# from keras.regularizers import l2
+
+from tensorflow.keras import Input, Model
+from tensorflow.keras.layers import Conv2D, Activation, Dense, Flatten, Add, BatchNormalization
+from tensorflow.keras.regularizers import l2
 
 from chess_zero.agent.api_chess import ChessModelAPI
 from chess_zero.config import Config
@@ -144,7 +148,7 @@ class ChessModel:
             with open(config_path, "rt") as f:
                 self.model = Model.from_config(json.load(f))
             self.model.load_weights(weight_path)
-            self.model._make_predict_function()
+            # self.model._make_predict_function()
             self.digest = self.fetch_digest(weight_path)
             logger.debug(f"loaded model digest = {self.digest}")
             return True
@@ -158,6 +162,8 @@ class ChessModel:
         :param str config_path: path to save the entire configuration to
         :param str weight_path: path to save the model weights to
         """
+        if not weight_path.endswith("weights.h5"):
+            weight_path = weight_path.replace(".h5", ".weights.h5")
         logger.debug(f"save model to {config_path}")
         with open(config_path, "wt") as f:
             json.dump(self.model.get_config(), f)

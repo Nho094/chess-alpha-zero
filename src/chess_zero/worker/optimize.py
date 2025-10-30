@@ -60,6 +60,9 @@ class OptimizeWorker:
         """
         Does the actual training of the model, running it on game data. Endless.
         """
+        if self.model.model is None:
+            self.model.build()
+
         self.compile_model()
         self.filenames = deque(get_game_data_filenames(self.config.resource))
         shuffle(self.filenames)
@@ -84,7 +87,8 @@ class OptimizeWorker:
         """
         tc = self.config.trainer
         state_ary, policy_ary, value_ary = self.collect_all_loaded_data()
-        tensorboard_cb = TensorBoard(log_dir="./logs", batch_size=tc.batch_size, histogram_freq=1)
+        #changed
+        tensorboard_cb = TensorBoard(log_dir="./logs", histogram_freq=1)
         self.model.model.fit(state_ary, [policy_ary, value_ary],
                              batch_size=tc.batch_size,
                              epochs=epochs,
@@ -179,6 +183,7 @@ def convert_to_cheating_data(data):
     :param data: format is SelfPlayWorker.buffer
     :return:
     """
+
     state_list = []
     policy_list = []
     value_list = []
