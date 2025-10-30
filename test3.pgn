@@ -68,3 +68,53 @@
 
 1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Be3 Rd3 21. Rac1 Bb4 22. Ne4 Bxe1 23. Rxe1 Rfd8 24. Nc5 Rd1 25. Kf1 Bc8 26. Bf3 Rxe1+ 27. Kxe1 b6 28. Na4 c5 29. Nc3 Bf5 30. Nb5 a6 31. Nc3 Rd3 32. Na4 Rd6 33. Be2 a5 34. Bf4 Re6 35. Kd2 g5 36. Bc7 b5 37. Bxb5 Bb1 38. a3 1-0
 
+[Event "?"]
+[Site "?"]
+[Date "2025.10.31"]
+[Round "?"]
+[White "current_model"]
+[Black "ng_model"]
+[Result "0-1"]
+
+1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Be3 Rd3 21. Rac1 Bb4 22. Ne4 Bxe1 23. Rxe1 Rfd8 24. Nc5 Rd1 25. Kf1 Bc8 26. Bf3 Rxe1+ 27. Kxe1 b6 28. Na4 c5 29. Nc3 Bf5 30. Nb5 Rd7 31. Bc6 Re7 32. Kd2 Kf8 33. Bf4 Bd7 34. Bxd7 Rxd7+ 35. Kc3 a6 36. Nc7 g5 37. Be3 Rxc7 0-1
+
+[Event "?"]
+[Site "?"]
+[Date "2025.10.31"]
+[Round "?"]
+[White "ng_model"]
+[Black "current_model"]
+[Result "1-0"]
+
+1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Rad1 Rxd1 21. Rxd1 g5 22. Be3 a6 23. Na4 Rd8 24. Rxd8 Bxd8 25. Nc5 Bc8 26. Ne4 Be7 27. Nc5 Bd8 28. Ne4 Ke6 29. f4 gxf4 30. Bxf4 Be7 31. Kf2 f5 32. Ng5+ Bxg5 33. Bxg5 1-0
+
+[Event "?"]
+[Site "?"]
+[Date "2025.10.31"]
+[Round "?"]
+[White "current_model"]
+[Black "ng_model"]
+[Result "1/2-1/2"]
+
+1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Rad1 Rxd1 21. Rxd1 g5 22. Be3 a6 23. Na4 Rd8 24. Rxd8 Bxd8 25. Nc5 Bc8 26. Be4 f5 27. Bd3 Bb6 28. Bc4+ Kg6 29. b4 Bc7 30. a4 f4 31. Bd4 Bd6 32. Bd3+ Kh6 33. a5 f3 34. Ne4 Bxb4 35. h4 gxh4 36. gxh4 Bxa5 37. Nd6 Be6 38. Nxb7 Bb4 39. Nd8 Bd5 40. Be3+ Kh5 41. Bxh7 Kxh4 42. Bc2 a5 43. Kh2 c5 44. Ba4 c4 45. Nc6 Kg4 46. Nxb4 axb4 47. Bd7+ Kh4 48. Bc5 b3 49. Bd4 Be4 50. Be6 Bd3 51. Bf6+ Kh5 52. Kg3 Kg6 53. Bc3 Be2 54. Kf4 Kh6 55. Bd5 Kg6 56. Be4+ Kf7 57. Ke5 Ke7 58. Bd5 Kd7 59. Be4 Ke7 60. Bc6 Kf7 61. Bd5+ Kg6 62. Be4+ Kg5 63. Bd5 Kg4 64. Be6+ Kg5 65. Bd5 Kg4 66. Be6+ Kg5 1/2-1/2
+
+[Event "?"]
+[Site "?"]
+[Date "2025.10.31"]
+[Round "?"]
+[White "ng_model"]
+[Black "current_model"]
+[Result "1-0"]
+
+1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Be3 Rd3 21. Rac1 Bb4 22. Ne4 Bxe1 23. Rxe1 Rfd8 24. Nc5 Rd1 25. Kf1 Bc8 26. Bf3 Rxe1+ 27. Kxe1 b6 28. Na4 c5 29. Nc3 Bf5 30. Nb5 Rd7 31. Bc6 Re7 32. Kd2 Ke6 33. Bf4 g5 34. Bb8 a6 35. Nc3 b5 36. a4 b4 37. Nd5 Rf7 38. Nb6 Rf8 39. Bc7 h5 40. Bd5+ Ke7 41. a5 Be6 42. Bb7 Bxb3 43. Bxa6 Be6 44. Bb7 c4 45. a6 c3+ 46. Kc2 Bf5+ 47. Kb3 c2 48. Kb2 b3 49. a7 Be6 50. a8=Q Rxa8 51. Bxa8 Kf7 52. Bc6 Ke7 53. f4 gxf4 54. gxf4 h4 55. Be4 f5 56. Bd3 h3 57. Be5 Kf7 58. Na4 Ke7 59. Nc5 Bd5 60. Bxf5 Bc4 61. Bxh3 Kf7 62. f5 Bd5 63. Nd3 Bc4 64. Nc1 1-0
+
+[Event "?"]
+[Site "?"]
+[Date "2025.10.31"]
+[Round "?"]
+[White "current_model"]
+[Black "ng_model"]
+[Result "0-1"]
+
+1. c4 e5 2. g3 Nf6 3. Bg2 d5 4. cxd5 Nxd5 5. Nc3 Nb6 6. Nf3 Nc6 7. O-O Be7 8. d3 O-O 9. Be3 Be6 10. d4 exd4 11. Nxd4 Nxd4 12. Bxd4 c6 13. Qd3 Nc4 14. b3 Ne5 15. Bxe5 Qxd3 16. exd3 Rad8 17. d4 f6 18. Bf4 Rxd4 19. Rfe1 Kf7 20. Be3 Rd3 21. Rac1 Bb4 22. Ne4 Bxe1 23. Rxe1 Rfd8 24. Nc5 Rd1 25. Kf1 Bc8 26. Bf3 Rxe1+ 27. Kxe1 b6 28. Na4 c5 29. Nc3 Bf5 30. g4 Be6 31. h3 Rd3 32. Nb5 Rd7 33. Bc6 Re7 34. Kd2 a6 35. Nd6+ Kf8 36. Be4 Rd7 37. Bf4 Ke7 38. Bd3 Rxd6 39. Bxd6+ Kxd6 40. Bxa6 Ke5 41. Ke3 g5 42. Bd3 h6 43. Bc4 Bd7 44. a4 f5 45. gxf5 Bxf5 46. Bf1 Be6 47. Bc4 Bxh3 48. Bf7 Bf5 49. Bc4 h5 50. Bf7 h4 51. Bc4 h3 52. Bf1 g4 0-1
+
