@@ -12,7 +12,7 @@ class PlayWithHumanConfig:
 
     """
     def __init__(self):
-        self.simulation_num_per_move = 100 #1200
+        self.simulation_num_per_move = 50 #1200
         self.threads_multiplier = 2
         self.c_puct = 1 # lower  = prefer mean action value
         self.noise_eps = 0
